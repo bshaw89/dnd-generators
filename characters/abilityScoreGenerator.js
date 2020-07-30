@@ -12,24 +12,24 @@ const rollScore = () => {
   rolls.push(roll4);
   let sortedRolls = rolls.sort();
   sortedRolls.shift();
-  
-  const sum = rolls.reduce(function(a, b) {
+
+  const sum = rolls.reduce(function (a, b) {
     return a + b;
   }, 0);
 
   return sum;
-}
+};
 
 const abilityScores = () => {
-  let scoresTotal = []
+  let scoresTotal = [];
   let num = 1;
-  
+
   while (num <= 6) {
     scoresTotal.push(rollScore());
     num++;
   }
   return scoresTotal;
-}
+};
 
 let scoresObj = {
   Str: rollScore(),
@@ -37,8 +37,8 @@ let scoresObj = {
   Con: rollScore(),
   Int: rollScore(),
   Wis: rollScore(),
-  Cha: rollScore()
-}
+  Cha: rollScore(),
+};
 
 let primeAttr = {};
 let secondaryAttr = {};
@@ -53,22 +53,26 @@ const primeChecker = (scores) => {
     }
   }
   return primeAttr;
-}
+};
 
 const secondaryChecker = (scores) => {
   let max = 0;
   for (let score in scores) {
-    if ((!primeAttr[score]) && (scores[score] > max) && (scores[score] <= Object.values(primeAttr))) {
+    if (
+      !primeAttr[score] &&
+      scores[score] > max &&
+      scores[score] <= Object.values(primeAttr)
+    ) {
       max = scores[score];
       secondaryAttr = {};
       secondaryAttr[score] = scores[score];
     }
   }
   return secondaryAttr;
-}
+};
 
+let mods = {};
 const modifiers = (scores) => {
-  let mods = {};
   for (let score in scores) {
     if (scores[score] >= 10 && scores[score] <= 11) {
       mods[score] = 0;
@@ -93,8 +97,18 @@ const modifiers = (scores) => {
     }
   }
   return mods;
-}
+};
 
-console.log(scoresObj, primeChecker(scoresObj), secondaryChecker(scoresObj), modifiers(scoresObj));
+primeChecker(scoresObj);
+secondaryChecker(scoresObj);
+modifiers(scoresObj);
 
-module.exports = { abilityScores, primeChecker, secondaryChecker, scoresObj, primeAttr, secondaryAttr };
+module.exports = {
+  abilityScores,
+  primeChecker,
+  secondaryChecker,
+  scoresObj,
+  primeAttr,
+  secondaryAttr,
+  mods
+};
