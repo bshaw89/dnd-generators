@@ -67,6 +67,34 @@ const secondaryChecker = (scores) => {
   return secondaryAttr;
 }
 
-console.log(scoresObj, primeChecker(scoresObj), secondaryChecker(scoresObj));
+const modifiers = (scores) => {
+  let mods = {};
+  for (let score in scores) {
+    if (scores[score] >= 10 && scores[score] <= 11) {
+      mods[score] = 0;
+    } else if (scores[score] >= 12 && scores[score] <= 13) {
+      mods[score] = 1;
+    } else if (scores[score] >= 14 && scores[score] <= 15) {
+      mods[score] = 2;
+    } else if (scores[score] >= 16 && scores[score] <= 17) {
+      mods[score] = 3;
+    } else if (scores[score] >= 18 && scores[score] <= 19) {
+      mods[score] = 4;
+    } else if (scores[score] >= 8 && scores[score] <= 9) {
+      mods[score] = -1;
+    } else if (scores[score] >= 6 && scores[score] <= 7) {
+      mods[score] = -2;
+    } else if (scores[score] >= 4 && scores[score] <= 5) {
+      mods[score] = -3;
+    } else if (scores[score] >= 2 && scores[score] <= 3) {
+      mods[score] = -4;
+    } else if (scores[score] === 1) {
+      mods[score] = -5;
+    }
+  }
+  return mods;
+}
+
+console.log(scoresObj, primeChecker(scoresObj), secondaryChecker(scoresObj), modifiers(scoresObj));
 
 module.exports = { abilityScores, primeChecker, secondaryChecker, scoresObj, primeAttr, secondaryAttr };
