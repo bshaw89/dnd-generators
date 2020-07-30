@@ -58,7 +58,7 @@ const primeChecker = (scores) => {
 const secondaryChecker = (scores) => {
   let max = 0;
   for (let score in scores) {
-    if (scores[score] > max && scores[score] < Object.values(primeAttr)) {
+    if ((!primeAttr[score]) && (scores[score] > max) && (scores[score] <= Object.values(primeAttr))) {
       max = scores[score];
       secondaryAttr = {};
       secondaryAttr[score] = scores[score];
@@ -69,4 +69,4 @@ const secondaryChecker = (scores) => {
 
 console.log(scoresObj, primeChecker(scoresObj), secondaryChecker(scoresObj));
 
-module.exports = { abilityScores, primeChecker, secondaryChecker, scoresObj };
+module.exports = { abilityScores, primeChecker, secondaryChecker, scoresObj, primeAttr, secondaryAttr };
