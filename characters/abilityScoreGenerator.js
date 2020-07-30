@@ -1,3 +1,5 @@
+const { builtinModules } = require("module");
+
 const rollScore = () => {
   let rolls = [];
   let roll1 = Math.floor(Math.random() * Math.floor(6) + 1);
@@ -29,4 +31,42 @@ const abilityScores = () => {
   return scoresTotal;
 }
 
-console.log(abilityScores());
+let scoresObj = {
+  Str: rollScore(),
+  Dex: rollScore(),
+  Con: rollScore(),
+  Int: rollScore(),
+  Wis: rollScore(),
+  Cha: rollScore()
+}
+
+let primeAttr = {};
+let secondaryAttr = {};
+
+const primeChecker = (scores) => {
+  let max = 0;
+  for (let score in scores) {
+    if (scores[score] > max) {
+      max = scores[score];
+      primeAttr = {};
+      primeAttr[score] = scores[score];
+    }
+  }
+  return primeAttr;
+}
+
+const secondaryChecker = (scores) => {
+  let max = 0;
+  for (let score in scores) {
+    if (scores[score] > max && scores[score] < Object.values(primeAttr)) {
+      max = scores[score];
+      secondaryAttr = {};
+      secondaryAttr[score] = scores[score];
+    }
+  }
+  return secondaryAttr;
+}
+
+console.log(scoresObj, primeChecker(scoresObj), secondaryChecker(scoresObj));
+
+module.exports = { abilityScores, primeChecker, secondaryChecker, scoresObj };
