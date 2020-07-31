@@ -1,0 +1,25 @@
+{
+  "name": "dnd-generators",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bshaw89/dnd-generators.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bshaw89/dnd-generators/issues"
+  },
+  "homepage": "https://github.com/bshaw89/dnd-generators#readme",
+  "dependencies": {
+    "prettier": "^2.0.5",
+    "require": "^2.4.20",
+    "requirejs": "^2.3.6"
+  }
+}
