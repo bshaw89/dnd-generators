@@ -13,6 +13,38 @@ const hpChecker = (character) => {
     hitPoints = 8 + character.Modifiers.Con;
   }
   return hitPoints;
-} 
+}
 
-module.exports = { hpChecker };
+const goldRoller = (character) => {
+  let rolls = [];
+
+  if (character.Class === 'Fighter' || character.Class === 'Cleric') {
+    let roll1 = Math.floor(Math.random() * Math.floor(4) + 1);
+    let roll2 = Math.floor(Math.random() * Math.floor(4) + 1);
+    let roll3 = Math.floor(Math.random() * Math.floor(4) + 1);
+    let roll4 = Math.floor(Math.random() * Math.floor(4) + 1);
+    let roll5 = Math.floor(Math.random() * Math.floor(4) + 1);
+    rolls.push(roll1);
+    rolls.push(roll2);
+    rolls.push(roll3);
+    rolls.push(roll4);
+    rolls.push(roll5);
+  } else if (character.Class === 'Wizard' || character.Class === 'Rogue') {
+    let roll1 = Math.floor(Math.random() * Math.floor(4) + 1);
+    let roll2 = Math.floor(Math.random() * Math.floor(4) + 1);
+    let roll3 = Math.floor(Math.random() * Math.floor(4) + 1);
+    let roll4 = Math.floor(Math.random() * Math.floor(4) + 1);
+    rolls.push(roll1);
+    rolls.push(roll2);
+    rolls.push(roll3);
+    rolls.push(roll4);
+  } 
+  
+  const sum = rolls.reduce(function (a, b) {
+    return a + b;
+  }, 0);
+
+  return sum * 10;
+}
+
+module.exports = { hpChecker, goldRoller };
