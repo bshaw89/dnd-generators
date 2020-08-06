@@ -13,7 +13,8 @@ const charGenerator = () => {
   character.Abilities = asg.scoresObj,
   character.hp = bonuses.hpChecker(character);
   character.Gold = bonuses.goldRoller(character);
-  character.Equipment = eq.equipmentBuyer(character);
+  eq.armorBuyer(character);
+  eq.weaponBuyer(character);
   return character;
 }
 
